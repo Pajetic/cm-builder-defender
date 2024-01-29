@@ -20,6 +20,19 @@ public class GameInputManager : MonoBehaviour {
         return mousePosition;
     }
 
+    public Vector3 GetCameraMovementVectorNormalized() {
+        return inputActions.Player.CameraMovement.ReadValue<Vector2>();
+    }
+
+    public float GetMouseScrollDelta() {
+        float scrollValue = inputActions.Player.CameraZoom.ReadValue<float>();
+        // Scroll value on Windows has a bug where it returns +/- 120
+        if (Mathf.Abs(scrollValue) > 1) {
+            scrollValue /= 120;
+        }
+        return scrollValue;
+    }
+
     private void Awake() {
         Instance = this;
 
