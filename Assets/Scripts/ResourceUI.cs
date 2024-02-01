@@ -39,4 +39,8 @@ public class ResourceUI : MonoBehaviour {
             resourceDisplayDict[resource].SetAmount(ResourceManager.Instance.GetResourceAmount(resource));
         }
     }
+
+    private void OnDestroy() {
+        ResourceManager.Instance.OnResourceAmountChanged -= OnResourceAmountChanged;
+    }
 }

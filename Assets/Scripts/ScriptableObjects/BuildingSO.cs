@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Building")]
 public class BuildingSO : ScriptableObject {
 
-    public string nameString;
-    public Transform prefab;
-    public ResourceGeneratorData resourceGeneratorData;
+    public string NameString;
+    public Transform Prefab;
+    public Sprite Sprite;
+    public ResourceGeneratorData ResourceGeneratorData;
 
 }
 

@@ -7,5 +7,7 @@ public struct ResourceGeneratorData {
 
     public float TimerMax;
     public ResourceSO Resource;
+    public float ResourceDetectionRadius;
+    public int MaxResourceNodeCount;
 
 }

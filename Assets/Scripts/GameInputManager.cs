@@ -55,5 +55,12 @@ public class GameInputManager : MonoBehaviour {
     private void SelectBuilding2_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         OnSelectBuilding2?.Invoke(this, EventArgs.Empty);
     }
+
+    private void OnDestroy() {
+        inputActions.Player.Mouse1.performed -= Mouse1_performed;
+        inputActions.Player.SelectBuilding1.performed -= SelectBuilding1_performed;
+        inputActions.Player.SelectBuilding2.performed -= SelectBuilding2_performed;
+        inputActions.Dispose();
+    }
 }
 
