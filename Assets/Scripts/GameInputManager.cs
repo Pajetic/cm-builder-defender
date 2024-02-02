@@ -14,7 +14,7 @@ public class GameInputManager : MonoBehaviour {
 
     private PlayerInputActions inputActions;
 
-    public Vector3 GetWorldMousePosition() {
+    public Vector3 GetMousePositionWorld() {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePosition.z = 0f;
         return mousePosition;

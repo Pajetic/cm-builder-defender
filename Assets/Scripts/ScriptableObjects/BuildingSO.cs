@@ -8,6 +8,7 @@ public class BuildingSO : ScriptableObject {
     public string NameString;
     public Transform Prefab;
     public Sprite Sprite;
+    public float SameBuildingRadiusRestriction;
     public ResourceGeneratorData ResourceGeneratorData;
 
 }

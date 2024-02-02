@@ -24,7 +24,7 @@ public class BuildingGhost : MonoBehaviour {
     }
 
     private void Update() {
-        ghostSprite.position = GameInputManager.Instance.GetWorldMousePosition();
+        ghostSprite.position = GameInputManager.Instance.GetMousePositionWorld();
     }
 
     private void Show(Sprite sprite) {
