@@ -3502,7 +3502,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1706597235
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 793ca27a5a3378149aaa12abe85933f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6862745}
@@ -9816,7 +9816,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 1df51749000000008d64479a
+  m_ApplyToSortingLayers: 1df51749000000008d64479a4b100d74
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -37418,11 +37418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1186270078606730887, guid: 7fa1cf136d11d4c46ab6bd9a42df771a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.720883
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: 1186270078606730887, guid: 7fa1cf136d11d4c46ab6bd9a42df771a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4405804
+      value: -2.63
       objectReference: {fileID: 0}
     - target: {fileID: 1186270078606730887, guid: 7fa1cf136d11d4c46ab6bd9a42df771a, type: 3}
       propertyPath: m_LocalPosition.z

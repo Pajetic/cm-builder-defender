@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,19 @@ public class ResourceGenerator : MonoBehaviour {
     private float resourceTimer = 0f;
     private float resourceTimerMax;
 
+    public Sprite GetResourceIcon() {
+        return resourceGeneratorData.Resource.Sprite;
+    }
+
+    public float GetResourcePerSecond() {
+        return 1 / resourceTimerMax;
+    }
+
+    public float GetResourceProgressNormalized() {
+        return resourceTimer / resourceTimerMax;
+    }
+
+    
 
     private void Awake() {
         resourceGeneratorData = GetComponent<BuildingBase>().Building.ResourceGeneratorData;

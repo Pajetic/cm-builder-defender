@@ -10,7 +10,7 @@ public class ResourceDisplaySingle : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI amountLabel;
 
     public void SetResource(ResourceSO resource) {
-        image.sprite = resource.sprite;
+        image.sprite = resource.Sprite;
     }
 
     public void SetAmount(int amount) {
