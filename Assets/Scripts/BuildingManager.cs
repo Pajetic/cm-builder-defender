@@ -22,11 +22,16 @@ public class BuildingManager : MonoBehaviour {
 
 
     [SerializeField] private BuildingListSO buildingList;
+    [SerializeField] private BuildingBase hqBuilding;
     private BuildingSO selectedBuilding;
 
     public void SetSelectedBuilding(BuildingSO building) {
         selectedBuilding = building;
         OnSelectedBuildingChanged?.Invoke(this, new OnSelectedBuildingChangedEventArgs { SelectedBuilding = this.selectedBuilding });
+    }
+
+    public BuildingBase GetHQBuilding() {
+        return hqBuilding;
     }
 
     private void Awake() {
