@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BuildingSelectUI : MonoBehaviour {
 
+    private const string CURSOR_TOOLTIP = "Cursor";
+
     [SerializeField] private BuildingListSO buildingList;
     [SerializeField] private Transform buildingButtonTemplate;
     [SerializeField] private Transform cursorButtonTransform;
@@ -23,6 +25,12 @@ public class BuildingSelectUI : MonoBehaviour {
         BuildingButtonTemplate cursorButton = cursorButtonTransform.GetComponent<BuildingButtonTemplate>();
         cursorButton.SetSelected(true);
         cursorButton.OnClick += BuildingButton_OnClick;
+        cursorButton.GetComponent<MouseoverEvents>().OnMouseEnter += (sender, eventArgs) => {
+            TooltipUI.Instance.SetTooltipText(CURSOR_TOOLTIP);
+        };
+        cursorButton.GetComponent<MouseoverEvents>().OnMouseExit += (sender, eventArgs) => {
+            TooltipUI.Instance.Hide();
+        };
         cursorButton.gameObject.SetActive(true);
         buildingButtonList.Add(cursorButton);
     }
@@ -32,6 +40,12 @@ public class BuildingSelectUI : MonoBehaviour {
             BuildingButtonTemplate buildingButton = Instantiate(buildingButtonTemplate, transform).GetComponent<BuildingButtonTemplate>();
             buildingButton.SetBuilding(buildingSO);
             buildingButton.OnClick += BuildingButton_OnClick;
+            buildingButton.GetComponent<MouseoverEvents>().OnMouseEnter += (sender, eventArgs) => {
+                TooltipUI.Instance.SetTooltipText(buildingSO.NameString + "\n" + buildingSO.GetResourceCostString());
+            };
+            buildingButton.GetComponent<MouseoverEvents>().OnMouseExit += (sender, eventArgs) => {
+                TooltipUI.Instance.Hide();
+            };
             buildingButton.gameObject.SetActive(true);
             buildingButtonList.Add(buildingButton);
         }

@@ -17,6 +17,28 @@ public class ResourceManager : MonoBehaviour {
         OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public bool CanAfford(List<ResourceAmount> cost) {
+        foreach(ResourceAmount resourceAmount in cost) {
+            if (resourceAmountDict[resourceAmount.Resource] < resourceAmount.Amount) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool TrySpendResource(List<ResourceAmount> cost) {
+        if (!CanAfford(cost)) {
+            return false;
+        }
+
+        foreach (ResourceAmount resourceAmount in cost) {
+            resourceAmountDict[resourceAmount.Resource] -= resourceAmount.Amount;
+        }
+
+        return true;
+    }
+
     public int GetResourceAmount(ResourceSO resource) {
         return resourceAmountDict[resource];
     }

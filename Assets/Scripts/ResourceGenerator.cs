@@ -10,6 +10,20 @@ public class ResourceGenerator : MonoBehaviour {
     private float resourceTimer = 0f;
     private float resourceTimerMax;
 
+    public static float GetResourceEfficiency(Vector3 position, ResourceGeneratorData resourceGeneratorData) {
+        Collider2D[] nodes = Physics2D.OverlapCircleAll(position, resourceGeneratorData.ResourceDetectionRadius);
+
+        int nearbyResourceCount = 0;
+        foreach (Collider2D node in nodes) {
+            ResourceNode resourceNode = node.GetComponent<ResourceNode>();
+            if (resourceNode != null && resourceNode.Resource == resourceGeneratorData.Resource) {
+                nearbyResourceCount++;
+            }
+        }
+        nearbyResourceCount = Mathf.Clamp(nearbyResourceCount, 0, resourceGeneratorData.MaxResourceNodeCount);
+        return (float)nearbyResourceCount / resourceGeneratorData.MaxResourceNodeCount;
+    }
+
     public Sprite GetResourceIcon() {
         return resourceGeneratorData.Resource.Sprite;
     }
@@ -21,8 +35,6 @@ public class ResourceGenerator : MonoBehaviour {
     public float GetResourceProgressNormalized() {
         return resourceTimer / resourceTimerMax;
     }
-
-    
 
     private void Awake() {
         resourceGeneratorData = GetComponent<BuildingBase>().Building.ResourceGeneratorData;
@@ -42,22 +54,12 @@ public class ResourceGenerator : MonoBehaviour {
     }
 
     private void CalculateResourceGeneration() {
-        Collider2D[] nodes = Physics2D.OverlapCircleAll(transform.position, resourceGeneratorData.ResourceDetectionRadius);
+        float gatheringEfficiency = GetResourceEfficiency(transform.position, resourceGeneratorData);
 
-        int nearbyResourceCount = 0;
-        foreach (Collider2D node in nodes) {
-            ResourceNode resourceNode = node.GetComponent<ResourceNode>();
-            if (resourceNode != null && resourceNode.Resource == resourceGeneratorData.Resource) {
-                nearbyResourceCount++;
-            }
-        }
-
-        nearbyResourceCount = Mathf.Clamp(nearbyResourceCount, 0, resourceGeneratorData.MaxResourceNodeCount);
-
-        if (nearbyResourceCount == 0) {
+        if (gatheringEfficiency == 0) {
             enabled = false;
         } else {
-            resourceTimerMax = resourceTimerMax / 2f + resourceTimerMax * (1 - (float)nearbyResourceCount / resourceGeneratorData.MaxResourceNodeCount);
+            resourceTimerMax = resourceTimerMax / 2f + resourceTimerMax * (1 - gatheringEfficiency);
         }
     }
 }

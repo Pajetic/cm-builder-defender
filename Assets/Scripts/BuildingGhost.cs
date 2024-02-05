@@ -1,10 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingGhost : MonoBehaviour {
 
+    [SerializeField] private Transform visualContainer;
     [SerializeField] private Transform ghostSprite;
+    [SerializeField] private Image resourceIcon;
+    [SerializeField] private TextMeshProUGUI resourceEfficiency;
+    private BuildingSO selectedBuilding;
 
     private void Awake() {
         Hide();
@@ -15,8 +22,9 @@ public class BuildingGhost : MonoBehaviour {
     }
 
     private void OnSelectedBuildingChanged(object sender, BuildingManager.OnSelectedBuildingChangedEventArgs e) {
-        BuildingSO selectedBuilding = e.SelectedBuilding;
+        selectedBuilding = e.SelectedBuilding;
         if (selectedBuilding != null) {
+            resourceIcon.sprite = selectedBuilding.ResourceGeneratorData.Resource.Sprite;
             Show(selectedBuilding.Sprite);
         } else {
             Hide();
@@ -24,16 +32,19 @@ public class BuildingGhost : MonoBehaviour {
     }
 
     private void Update() {
-        ghostSprite.position = GameInputManager.Instance.GetMousePositionWorld();
+        transform.position = GameInputManager.Instance.GetMousePositionWorld();
+        if (selectedBuilding != null) {
+            resourceEfficiency.SetText((ResourceGenerator.GetResourceEfficiency(transform.position, selectedBuilding.ResourceGeneratorData) * 100).ToString("F0") + "%");
+        }
     }
 
     private void Show(Sprite sprite) {
         ghostSprite.GetComponent<SpriteRenderer>().sprite = sprite;
-        ghostSprite.gameObject.SetActive(true);
+        visualContainer.gameObject.SetActive(true);
     }
 
     private void Hide() {
-        ghostSprite.gameObject.SetActive(false);
+        visualContainer.gameObject.SetActive(false);
     }
 
     private void OnDestroy() {

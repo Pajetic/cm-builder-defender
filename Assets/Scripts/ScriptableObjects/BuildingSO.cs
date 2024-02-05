@@ -10,6 +10,16 @@ public class BuildingSO : ScriptableObject {
     public Sprite Sprite;
     public float SameBuildingRadiusRestriction;
     public ResourceGeneratorData ResourceGeneratorData;
+    public int HealthMax;
+    public List<ResourceAmount> ConstructionResourceCost;
+
+    public string GetResourceCostString() {
+        string costString = "";
+        foreach (ResourceAmount resourceAmount in ConstructionResourceCost) {
+            costString += "<color=#" + resourceAmount.Resource.ColorHex + ">" + resourceAmount.Resource.NameStringShort + resourceAmount.Amount + "</color>" + " ";
+        }
+        return costString;
+    }
 
 }
 
