@@ -12,6 +12,8 @@ public class ResourceManager : MonoBehaviour {
     [SerializeField] private ResourceListSO resourceList;
     private Dictionary<ResourceSO, int> resourceAmountDict;
 
+    [SerializeField] private List<ResourceAmount> startingResources;
+
     public void AddResource(ResourceSO resource, int amount) {
         resourceAmountDict[resource] += amount;
         OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
@@ -50,6 +52,10 @@ public class ResourceManager : MonoBehaviour {
 
         foreach (ResourceSO resource in resourceList.resources) {
             resourceAmountDict[resource] = 0;
+        }
+
+        foreach (ResourceAmount resourceAmount in startingResources) {
+            resourceAmountDict[resourceAmount.Resource] += resourceAmount.Amount;
         }
     }
 }

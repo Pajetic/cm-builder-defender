@@ -16,28 +16,45 @@ public class Enemy : MonoBehaviour {
 
     private void Start() {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        finalTargetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        BuildingBase hq = BuildingManager.Instance.GetHQBuilding();
+        finalTargetTransform = hq == null ? null : hq.transform;
         targetTransform = finalTargetTransform;
         findTargetTimerMax = Random.Range(findTargetTimerMax/2, findTargetTimerMax);
+        gameObject.GetComponent<HealthSystem>().OnDeath += OnDeath;
+    }
+
+    private void OnDeath(object sender, System.EventArgs e) {
+        Destroy(gameObject);
     }
 
     private void Update() {
-        if (targetTransform == null) {
-            if (finalTargetTransform == null) {
-                rigidbody2D.velocity = Vector3.zero;
-                return;
-            }
-            targetTransform = finalTargetTransform;
+        HandleTargeting();
+        HandleMovement();
+    }
+
+    private void HandleTargeting() {
+        if (finalTargetTransform == null) {
+            return;
         }
 
-        Vector3 moveVector = (targetTransform.position - transform.position).normalized;
-        rigidbody2D.velocity = moveVector * moveSpeed;
+        if (targetTransform == null) {
+            targetTransform = finalTargetTransform;
+        }
 
         findTargetTimer += Time.deltaTime;
         if (findTargetTimer > findTargetTimerMax) {
             findTargetTimer = 0f;
             FindTarget();
         }
+    }
+
+    private void HandleMovement() {
+        if (targetTransform == null) {
+            rigidbody2D.velocity = Vector3.zero;
+            return;
+        }
+        Vector3 moveVector = (targetTransform.position - transform.position).normalized;
+        rigidbody2D.velocity = moveVector * moveSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

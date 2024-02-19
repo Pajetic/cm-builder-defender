@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aafb3d268bf2844a92f6a0784bb7376, type: 3}
-  m_Name: HarvesterGold
+  m_Name: Tower
   m_EditorClassIdentifier: 
-  NameString: Gold Harvester
-  Prefab: {fileID: 3665824787272447433, guid: 72bb876b092804342beb70994cc9e838, type: 3}
-  Sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}
-  SameBuildingRadiusRestriction: 7
-  CanGenerateResource: 1
+  NameString: Tower
+  Prefab: {fileID: 3665824787272447433, guid: 3ee2dd597e1e09c429c06cb13aa862bf, type: 3}
+  Sprite: {fileID: 21300000, guid: 3a549cd61f4d79e4b996c9978dac641f, type: 3}
+  SameBuildingRadiusRestriction: 3
   ResourceGeneratorData:
-    TimerMax: 2
-    Resource: {fileID: 11400000, guid: da9057d5b0a3d6e48a6a6973a0671a13, type: 2}
-    ResourceDetectionRadius: 7
-    MaxResourceNodeCount: 3
-  HealthMax: 100
+    TimerMax: 0
+    Resource: {fileID: 0}
+    ResourceDetectionRadius: 0
+    MaxResourceNodeCount: 0
+  HealthMax: 70
   ConstructionResourceCost:
   - Resource: {fileID: 11400000, guid: 4eb457f8ec8f1564ba7c8639fadb04e7, type: 2}
-    Amount: 50
+    Amount: 40
   - Resource: {fileID: 11400000, guid: ace0d9e621d4e944cb71c7268587cb68, type: 2}
-    Amount: 50
+    Amount: 30

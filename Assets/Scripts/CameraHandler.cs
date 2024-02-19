@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class CameraHandler : MonoBehaviour {
 
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    private float cameraMovementSensitivity = 20f;
+    private float cameraMovementSensitivity = 40f;
     private float cameraZoomSensitivity = 2f;
     private float cameraZoomSpeed = 5f;
     private float cameraMinZoomDistance = 10f;

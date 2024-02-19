@@ -9,6 +9,7 @@ public class BuildingSO : ScriptableObject {
     public Transform Prefab;
     public Sprite Sprite;
     public float SameBuildingRadiusRestriction;
+    public bool CanGenerateResource;
     public ResourceGeneratorData ResourceGeneratorData;
     public int HealthMax;
     public List<ResourceAmount> ConstructionResourceCost;
