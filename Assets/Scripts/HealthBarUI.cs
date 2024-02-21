@@ -8,11 +8,12 @@ public class HealthBarUI : MonoBehaviour {
     [SerializeField] private Transform barSpriteContainer;
 
     private void Start() {
-        healthSystem.OnDamageTaken += HealthSystem_OnDamageTaken;
+        healthSystem.OnDamageTaken += OnHealthChanged;
+        healthSystem.OnHealed += OnHealthChanged;
         UpdateBar();
     }
 
-    private void HealthSystem_OnDamageTaken(object sender, System.EventArgs e) {
+    private void OnHealthChanged(object sender, System.EventArgs e) {
         UpdateBar();
     }
 

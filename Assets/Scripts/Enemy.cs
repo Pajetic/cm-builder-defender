@@ -20,10 +20,16 @@ public class Enemy : MonoBehaviour {
         finalTargetTransform = hq == null ? null : hq.transform;
         targetTransform = finalTargetTransform;
         findTargetTimerMax = Random.Range(findTargetTimerMax/2, findTargetTimerMax);
+        gameObject.GetComponent<HealthSystem>().OnDamageTaken += OnDamageTaken;
         gameObject.GetComponent<HealthSystem>().OnDeath += OnDeath;
     }
 
+    private void OnDamageTaken(object sender, System.EventArgs e) {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+    }
+
     private void OnDeath(object sender, System.EventArgs e) {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         Destroy(gameObject);
     }
 

@@ -12,6 +12,7 @@ public class BuildingSO : ScriptableObject {
     public bool CanGenerateResource;
     public ResourceGeneratorData ResourceGeneratorData;
     public int HealthMax;
+    public float ConstructionTimerMax;
     public List<ResourceAmount> ConstructionResourceCost;
 
     public string GetResourceCostString() {

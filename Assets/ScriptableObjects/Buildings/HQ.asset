@@ -23,4 +23,5 @@ MonoBehaviour:
     ResourceDetectionRadius: 10
     MaxResourceNodeCount: 7
   HealthMax: 200
+  ConstructionTimerMax: 5
   ConstructionResourceCost: []

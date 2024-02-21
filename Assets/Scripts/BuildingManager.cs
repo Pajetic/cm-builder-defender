@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour {
 
     [SerializeField] private BuildingListSO buildingList;
     [SerializeField] private BuildingBase hqBuilding;
+    [SerializeField] private GameObject constructionPrefab;
     private BuildingSO selectedBuilding;
 
     public void SetSelectedBuilding(BuildingSO building) {
@@ -42,6 +43,13 @@ public class BuildingManager : MonoBehaviour {
         GameInputManager.Instance.OnMouse1 += OnMouse1;
         GameInputManager.Instance.OnSelectBuilding1 += OnSelectBuilding1;
         GameInputManager.Instance.OnSelectBuilding2 += OnSelectBuilding2;
+
+        hqBuilding.GetComponent<HealthSystem>().OnDeath += HQBuilding_OnDeath;
+    }
+
+    private void HQBuilding_OnDeath(object sender, EventArgs e) {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.GameOver);
+        GameOverUI.Instance.Show();
     }
 
     private void OnSelectBuilding2(object sender, System.EventArgs e) {
@@ -57,7 +65,8 @@ public class BuildingManager : MonoBehaviour {
         if (!EventSystem.current.IsPointerOverGameObject() && selectedBuilding != null) {
             if (CanSpawnBuilding(mousePosition, out string errorMessage)) {
                 if (ResourceManager.Instance.TrySpendResource(selectedBuilding.ConstructionResourceCost)) {
-                    Instantiate(selectedBuilding.Prefab, mousePosition, Quaternion.identity);
+                    SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
+                    Instantiate(constructionPrefab, mousePosition, Quaternion.identity).GetComponent<BuildingConstruction>().SetBuilding(selectedBuilding);
                 } else {
                     TooltipUI.Instance.SetTooltipText(string.Format(BUILDING_ERROR_CANNOT_AFFORD, selectedBuilding.NameString), true);
                 }

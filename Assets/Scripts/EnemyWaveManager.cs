@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 
 public class EnemyWaveManager : MonoBehaviour {
 
+    public static EnemyWaveManager Instance { get; private set; }
+
     public event EventHandler OnWaveChanged;
 
     private enum State {
@@ -47,6 +49,10 @@ public class EnemyWaveManager : MonoBehaviour {
         Instantiate(enemyPrefab, position, Quaternion.identity).GetComponent<Enemy>();
     }
 
+    private void Awake() {
+        Instance = this;
+    }
+
     private void Start() {
         PickNextSpawnPosition();
         state = State.Waiting;
@@ -82,7 +88,7 @@ public class EnemyWaveManager : MonoBehaviour {
     }
 
     private void SpawnWave() {
-        enemiesToSpawn += 5 + 3 * waveNumber;
+        enemiesToSpawn += 5 + 5 * waveNumber;
         state = State.Spawning;
         waveNumber++;
         OnWaveChanged?.Invoke(this, EventArgs.Empty);
