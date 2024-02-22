@@ -7,6 +7,7 @@ public class BuildingConstruction : MonoBehaviour {
     private const string CONSTRUCTION_MATERIAL_PROGRESS = "_Progress";
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject buildingPlacedParticle;
     private BuildingSO building;
     private float constructionTimer;
     private float constructionTimerMax;
@@ -35,6 +36,7 @@ public class BuildingConstruction : MonoBehaviour {
     private void Awake() {
         boxCollider = GetComponent<BoxCollider2D>();
         constructionMaterial = spriteRenderer.material;
+        Instantiate(buildingPlacedParticle, transform.position, Quaternion.identity);
     }
 
     private void Update() {
@@ -44,6 +46,7 @@ public class BuildingConstruction : MonoBehaviour {
             constructionTimer = constructionTimerMax;
             SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
             Instantiate(building.Prefab, transform.position, Quaternion.identity);
+            Instantiate(buildingPlacedParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

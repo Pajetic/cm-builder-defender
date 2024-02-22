@@ -15,7 +15,7 @@ public class BuildingDemolishButton : MonoBehaviour {
             foreach(ResourceAmount resourceAmount in buildingType.ConstructionResourceCost) {
                 ResourceManager.Instance.AddResource(resourceAmount.Resource, Mathf.FloorToInt(resourceAmount.Amount * deconstructionRefundMultiplier));
             }
-            Destroy(building.gameObject);
+            building.DestroyBuilding();
         });
     }
 

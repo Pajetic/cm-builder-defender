@@ -16,16 +16,20 @@ public class SoundManager : MonoBehaviour {
         GameOver
     }
 
+    private const string PREFS_SFX_VOLUME = "sfxVolume";
+
     [SerializeField] private List<AudioClip> gameSFX;
     private AudioSource audioSource;
     private float volumeScale = 0.3f;
 
     public void IncreaseVolume() {
         volumeScale = Mathf.Clamp(volumeScale + 0.1f, 0, 1);
+        PlayerPrefs.SetFloat(PREFS_SFX_VOLUME, volumeScale);
     }
 
     public void DecreaseVolume() {
         volumeScale = Mathf.Clamp(volumeScale - 0.1f, 0, 1);
+        PlayerPrefs.SetFloat(PREFS_SFX_VOLUME, volumeScale);
     }
 
     public float GetVolume() {
@@ -39,6 +43,7 @@ public class SoundManager : MonoBehaviour {
     private void Awake() {
         Instance = this;
         audioSource = GetComponent<AudioSource>();
+        volumeScale = PlayerPrefs.GetFloat(PREFS_SFX_VOLUME, volumeScale);
     }
 
 }

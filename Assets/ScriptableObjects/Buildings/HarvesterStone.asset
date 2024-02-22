@@ -23,7 +23,7 @@ MonoBehaviour:
     ResourceDetectionRadius: 7
     MaxResourceNodeCount: 4
   HealthMax: 100
-  ConstructionTimerMax: 5
+  ConstructionTimerMax: 10
   ConstructionResourceCost:
   - Resource: {fileID: 11400000, guid: 4eb457f8ec8f1564ba7c8639fadb04e7, type: 2}
-    Amount: 30
+    Amount: 100

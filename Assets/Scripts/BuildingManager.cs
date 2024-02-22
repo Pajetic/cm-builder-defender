@@ -19,6 +19,7 @@ public class BuildingManager : MonoBehaviour {
     private const string BUILDING_ERROR_TOO_CLOSE = "Too close to another building of the same type!";
     private const string BUILDING_ERROR_TOO_FAR = "Too far from any other building!";
     private const string BUILDING_ERROR_CANNOT_AFFORD = "Cannot afford {0}";
+    private const string BUILDING_NO_RESOURCE = "There are no nearby resources!";
 
 
     [SerializeField] private BuildingListSO buildingList;
@@ -84,6 +85,13 @@ public class BuildingManager : MonoBehaviour {
         if (colliderList.Length != 0) {
             errorMessage = BUILDING_ERROR_DIRECT_OVERLAP;
             return false;
+        }
+
+        if (selectedBuilding.CanGenerateResource) {
+            if (Mathf.Approximately(ResourceGenerator.GetResourceEfficiency(mousePosition, selectedBuilding.ResourceGeneratorData), 0f)) {
+                errorMessage = BUILDING_NO_RESOURCE;
+                return false;
+            }
         }
 
         // Check for being too close to same building type

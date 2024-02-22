@@ -20,11 +20,11 @@ public class GameInputManager : MonoBehaviour {
         return mousePosition;
     }
 
-    public Vector3 GetMousePositionScreen() {
+    public Vector2 GetMousePositionScreen() {
         return Mouse.current.position.ReadValue();
     }
 
-    public Vector3 GetCameraMovementVectorNormalized() {
+    public Vector2 GetCameraMovementVectorNormalized() {
         return inputActions.Player.CameraMovement.ReadValue<Vector2>();
     }
 

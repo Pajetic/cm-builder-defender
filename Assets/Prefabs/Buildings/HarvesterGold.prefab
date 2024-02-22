@@ -72,6 +72,7 @@ MonoBehaviour:
   <Building>k__BackingField: {fileID: 11400000, guid: d2cbe3c0b078edc40965b5757c5c2b55, type: 2}
   demolishButton: {fileID: 1875723149283842561}
   repairButton: {fileID: 3889189975008011840}
+  buildingDestroyedParticle: {fileID: 7186901638340864668, guid: 5731055b57af76744aa0f260d9e0e788, type: 3}
 --- !u!61 &-4842218557589505809
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -762,6 +763,10 @@ PrefabInstance:
       value: HealthBarUI
       objectReference: {fileID: 0}
     - target: {fileID: 7013903286256238586, guid: c6a05af6a3d822547a75a5e436b1b940, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036406028273032964, guid: c6a05af6a3d822547a75a5e436b1b940, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}

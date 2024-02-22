@@ -274,7 +274,7 @@ MonoBehaviour:
   targetAcquisitionRadius: 30
   attackProjetile: {fileID: 3461592718190966951, guid: aa6f623159c80444cb64e47859e24665, type: 3}
   projectileSpawn: {fileID: 1488610082496323101}
-  attackTimerMax: 0.3
+  attackTimerMax: 0.2
 --- !u!114 &393753855753647817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +302,7 @@ MonoBehaviour:
   <Building>k__BackingField: {fileID: 11400000, guid: 63136e3bf6affa348ae0bf5e8a3243fa, type: 2}
   demolishButton: {fileID: 2933739996839172181}
   repairButton: {fileID: 4380542827134373444}
+  buildingDestroyedParticle: {fileID: 7186901638340864668, guid: 5731055b57af76744aa0f260d9e0e788, type: 3}
 --- !u!61 &-3671948059125132435
 BoxCollider2D:
   m_ObjectHideFlags: 0

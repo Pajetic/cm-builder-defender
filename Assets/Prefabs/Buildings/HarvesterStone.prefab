@@ -72,6 +72,7 @@ MonoBehaviour:
   <Building>k__BackingField: {fileID: 11400000, guid: 5b7196204394a2c4bbe37196f735803e, type: 2}
   demolishButton: {fileID: 4063270959608949033}
   repairButton: {fileID: 8523086654663032791}
+  buildingDestroyedParticle: {fileID: 7186901638340864668, guid: 5731055b57af76744aa0f260d9e0e788, type: 3}
 --- !u!61 &3377777580064489031
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -26,6 +26,6 @@ MonoBehaviour:
   ConstructionTimerMax: 5
   ConstructionResourceCost:
   - Resource: {fileID: 11400000, guid: 4eb457f8ec8f1564ba7c8639fadb04e7, type: 2}
-    Amount: 40
+    Amount: 100
   - Resource: {fileID: 11400000, guid: ace0d9e621d4e944cb71c7268587cb68, type: 2}
     Amount: 30

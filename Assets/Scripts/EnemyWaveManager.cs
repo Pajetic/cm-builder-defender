@@ -23,7 +23,7 @@ public class EnemyWaveManager : MonoBehaviour {
     private State state;
     private int waveNumber;
     private float waveTimer = 0f;
-    [SerializeField] private float waveTimerMax = 10f;
+    [SerializeField] private float waveTimerMax = 15f;
     private float enemySpawnTimeVariance = 0.2f;
     private float enemySpawnTimer = 0f;
     private int enemiesToSpawn = 0;
@@ -88,7 +88,7 @@ public class EnemyWaveManager : MonoBehaviour {
     }
 
     private void SpawnWave() {
-        enemiesToSpawn += 5 + 5 * waveNumber;
+        enemiesToSpawn += 3 + 2 * waveNumber;
         state = State.Spawning;
         waveNumber++;
         OnWaveChanged?.Invoke(this, EventArgs.Empty);

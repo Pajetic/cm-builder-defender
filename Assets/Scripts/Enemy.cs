@@ -5,14 +5,20 @@ using UnityEngine.EventSystems;
 
 public class Enemy : MonoBehaviour {
 
+    [SerializeField] private GameObject enemyDeathParticles;
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float targetAcquisitionRadius = 10f;
+    private HealthSystem healthSystem;
     new private Rigidbody2D rigidbody2D;
     private Transform finalTargetTransform;
     private Transform targetTransform;
     private float findTargetTimerMax = 0.2f;
     private float findTargetTimer = 0f;
+
+    private void Awake() {
+        healthSystem = gameObject.GetComponent<HealthSystem>();
+    }
 
     private void Start() {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -20,16 +26,18 @@ public class Enemy : MonoBehaviour {
         finalTargetTransform = hq == null ? null : hq.transform;
         targetTransform = finalTargetTransform;
         findTargetTimerMax = Random.Range(findTargetTimerMax/2, findTargetTimerMax);
-        gameObject.GetComponent<HealthSystem>().OnDamageTaken += OnDamageTaken;
-        gameObject.GetComponent<HealthSystem>().OnDeath += OnDeath;
+        healthSystem.OnDamageTaken += OnDamageTaken;
+        healthSystem.OnDeath += OnDeath;
     }
 
     private void OnDamageTaken(object sender, System.EventArgs e) {
+        CinemachineShake.Instance.ShakeCamera(2f, 0.15f);
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 
     private void OnDeath(object sender, System.EventArgs e) {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        Instantiate(enemyDeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -67,7 +75,7 @@ public class Enemy : MonoBehaviour {
         BuildingBase building = collision.gameObject.GetComponent<BuildingBase>();
         if (building != null) {
             building.GetComponent<HealthSystem>().ApplyDamage(damage);
-            Destroy(gameObject);
+            healthSystem.Kill();
         }
     }
 

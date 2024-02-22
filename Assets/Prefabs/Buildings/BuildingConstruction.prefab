@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6368097419724541561}
+  buildingPlacedParticle: {fileID: 8295742346658607647, guid: 4ac58936248f3144db274df6c4356236, type: 3}
 --- !u!61 &7678386747611216178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Building>k__BackingField: {fileID: 0}
   demolishButton: {fileID: 0}
+  repairButton: {fileID: 0}
 --- !u!114 &4129706754038309622
 MonoBehaviour:
   m_ObjectHideFlags: 0
